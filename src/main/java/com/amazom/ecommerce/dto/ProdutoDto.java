@@ -1,12 +1,6 @@
-package com.amazom.ecommerce.model;
+package com.amazom.ecommerce.dto;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-
-@Document("produto")
-public class Produto {
-    @Id
+public class ProdutoDto {
     private String id;
     private Integer codigo;
     private String descricao;
@@ -14,21 +8,6 @@ public class Produto {
     private double valorDeCusto;
     private String fornecedor;
     
-
-    
-    
-    public double getValorDeCusto() {
-        return valorDeCusto;
-    }
-    public void setValorDeCusto(double valorDeCusto) {
-        this.valorDeCusto = valorDeCusto;
-    }
-    public String getFornecedor() {
-        return fornecedor;
-    }
-    public void setFornecedor(String fornecedor) {
-        this.fornecedor = fornecedor;
-    }
     public String getId() {
         return id;
     }
@@ -53,14 +32,18 @@ public class Produto {
     public void setValor(double valor) {
         this.valor = valor;
     }
-    @Override
-    public String toString() {
-        return String.format("%s R$ %.2f", descricao, valor);
+    public double getValorDeCusto() {
+        return valorDeCusto;
     }
-
-
-
-
+    public void setValorDeCusto(double valorDeCusto) {
+        this.valorDeCusto = valorDeCusto;
+    }
+    public String getFornecedor() {
+        return fornecedor;
+    }
+    public void setFornecedor(String fornecedor) {
+        this.fornecedor = fornecedor;
+    }
 
     
 }

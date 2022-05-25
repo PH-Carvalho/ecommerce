@@ -2,10 +2,10 @@ package com.amazom.ecommerce.controller;
 
 
 import java.util.List;
-import java.util.Optional;
 
+import com.amazom.ecommerce.dto.ProdutoDto;
 import com.amazom.ecommerce.model.Produto;
-import com.amazom.ecommerce.model.repository.ProdutoRepository;
+import com.amazom.service.ProdutoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,24 +20,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/produtos")
 public class ProdutoController {
-
-  @Autowired
-  private ProdutoRepository repository;
-
+@Autowired
+private ProdutoService service;
+ 
   @GetMapping
-  public List<Produto> obterProdutos(){
-      return repository.findAll();
+  public List<ProdutoDto> obterProdutos(){
+     return service.obterTodosOsProdutos();
   }
 
   @GetMapping("/{id}")
-  public Produto obterProdutoPorId(@PathVariable String id){
+  public ProdutoDto obterProdutoPorId(@PathVariable String id){
 
-    Optional<Produto> produto= repository.findById(id);
-
-    if(produto.isPresent()){
-        return produto.get();
-    }
-      return null;
+    return service.obterPorId(id);
   }
 
   @PostMapping
